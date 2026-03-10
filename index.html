@@ -1,78 +1,520 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Professional Homepage</title>
+    <title>Erica - 全栈开发工程师 | 个人主页</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
-        header {
-            background: #4CAF50;
-            color: white;
-            padding: 1rem;
-            text-align: center;
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f5f5 0%, #f9f9f9 100%);
         }
-        section {
-            padding: 2rem;
-            margin: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .skills, .projects {
+
+        nav {
+            background: linear-gradient(90deg, #2d9d4f 0%, #20c997 100%);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
+            justify-content: center;
+            gap: 2rem;
         }
-        .skill, .project {
-            background: #f4f4f4;
-            padding: 1rem;
-            border-radius: 5px;
-            flex: 1 1 calc(30% - 1rem);
-        }
-        footer {
-            text-align: center;
-            padding: 1rem;
-            background: #4CAF50;
+
+        nav a {
             color: white;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffb6d9;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2d9d4f 0%, #20c997 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            border-bottom: 5px solid #ffb6d9;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        header .subtitle {
+            font-size: 1.8rem;
+            color: #ffb6d9;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            margin: 4rem 0;
+            padding: 2.5rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        section h2 {
+            color: #2d9d4f;
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 4px solid #ffb6d9;
+            padding-bottom: 0.8rem;
+            display: inline-block;
+        }
+
+        .about {
+            background: linear-gradient(135deg, #f0f7f0 0%, #fff0f5 100%);
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            background: linear-gradient(135deg, #e8f5e9 0%, #f3e5f5 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            border-left: 5px solid #2d9d4f;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(45, 157, 79, 0.25);
+        }
+
+        .skill-item.featured {
+            border-left-color: #ff69b4;
+            background: linear-gradient(135deg, #ffe0ec 0%, #fff0f5 100%);
+            grid-column: span 2;
+        }
+
+        .skill-item h3 {
+            color: #2d9d4f;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-item.featured h3 {
+            color: #ff69b4;
+            font-size: 1.5rem;
+        }
+
+        .skill-item p {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .timeline {
+            margin-top: 2rem;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: #2d9d4f;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 3px #2d9d4f;
+        }
+
+        .timeline-item:after {
+            content: '';
+            position: absolute;
+            left: 9px;
+            top: 20px;
+            width: 2px;
+            height: calc(100% + 20px);
+            background: #ffb6d9;
+        }
+
+        .timeline-item:last-child:after {
+            display: none;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-content h3 {
+            color: #2d9d4f;
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-content .time {
+            color: #ff69b4;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .timeline-content p {
+            color: #555;
+            margin-top: 0.5rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, #f0f7f0 0%, #fff0f5 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid #2d9d4f;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 15px 40px rgba(45, 157, 79, 0.3);
+        }
+
+        .project-card h3 {
+            color: #2d9d4f;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .project-card .tech {
+            color: #ff69b4;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .project-card p {
+            color: #555;
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .project-card a {
+            display: inline-block;
+            color: white;
+            background: linear-gradient(90deg, #2d9d4f 0%, #20c997 100%);
+            text-decoration: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+
+        .project-card a:hover {
+            transform: scale(1.05);
+        }
+
+        .contact {
+            text-align: center;
+            background: linear-gradient(135deg, #f0f7f0 0%, #fff0f5 100%);
+        }
+
+        .contact p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            background: white;
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+            border: 2px solid #2d9d4f;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .contact-item:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 25px rgba(45, 157, 79, 0.2);
+        }
+
+        .contact-item a {
+            color: #2d9d4f;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .contact-item a:hover {
+            color: #ff69b4;
+        }
+
+        footer {
+            background: linear-gradient(90deg, #2d9d4f 0%, #20c997 100%);
+            color: white;
+            text-align: center;
+            padding: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            header .subtitle {
+                font-size: 1.3rem;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            section {
+                padding: 1.5rem;
+                margin: 2rem 0;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            }
+
+            .skill-item.featured {
+                grid-column: span 1;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                gap: 1rem;
+            }
         }
     </style>
 </head>
 <body>
+    <nav>
+        <a href="#about">关于我</a>
+        <a href="#skills">技能</a>
+        <a href="#experience">经历</a>
+        <a href="#projects">项目</a>
+        <a href="#contact">联系</a>
+    </nav>
+
     <header>
-        <h1>John Doe</h1>
-        <p>Welcome to my professional homepage!</p>
+        <h1>Erica</h1>
+        <p class="subtitle">全栈开发工程师</p>
+        <p>热爱编程，专注于构建高效、优雅的应用程序。擅长使用 Python ���行后端开发，同时精通前端技术。致力于通过代码解决实际问题，持续学习和进步。</p>
     </header>
-    <section>
-        <h2>About Me</h2>
-        <p>I am a passionate developer with expertise in various technologies. I love creating responsive and user-friendly web applications.</p>
-    </section>
-    <section class="skills">
-        <h2>Skills</h2>
-        <div class="skill">HTML</div>
-        <div class="skill">CSS</div>
-        <div class="skill">JavaScript</div>
-        <div class="skill">React</div>
-        <div class="skill">Node.js</div>
-    </section>
-    <section class="projects">
-        <h2>Projects</h2>
-        <div class="project">Project A</div>
-        <div class="project">Project B</div>
-        <div class="project">Project C</div>
-    </section>
-    <section>
-        <h2>Contact</h2>
-        <p>Email: johndoe@example.com</p>
-    </section>
+
+    <div class="container">
+        <section id="about" class="about">
+            <h2>关于我</h2>
+            <p>我是一名充满热情的全栈开发工程师，拥有丰富的项目开发经验。我热爱编程和创新，能够独立完成从项目设计、开发到部署的全流程。对代码质量有高要求，始终追求最佳实践和高效的解决方案。</p>
+            <p>在职业生涯中，我不断学习新技术，参与过多个有趣且有挑战性的项目。我相信优秀的代码能够改变世界，也相信团队协作的力量。我喜欢与志同道合的人一起工作，共同完成令人兴奋的项目。</p>
+            <p>除了技术工作，我还热衷于开源贡献和知识分享。我相信开放、协作的精神能推动技术社区的发展。</p>
+        </section>
+
+        <section id="skills">
+            <h2>技能</h2>
+            <div class="skills-grid">
+                <div class="skill-item featured">
+                    <h3>🐍 Python</h3>
+                    <p>深度掌握，生产级代码</p>
+                </div>
+                <div class="skill-item">
+                    <h3>JavaScript</h3>
+                    <p>前端开发</p>
+                </div>
+                <div class="skill-item">
+                    <h3>React</h3>
+                    <p>现代前端框架</p>
+                </div>
+                <div class="skill-item">
+                    <h3>Django</h3>
+                    <p>后端框架</p>
+                </div>
+                <div class="skill-item">
+                    <h3>SQL</h3>
+                    <p>数据库设计</p>
+                </div>
+                <div class="skill-item">
+                    <h3>Git</h3>
+                    <p>版本控制</p>
+                </div>
+                <div class="skill-item">
+                    <h3>Docker</h3>
+                    <p>容器化部署</p>
+                </div>
+                <div class="skill-item">
+                    <h3>RESTful API</h3>
+                    <p>接口开发</p>
+                </div>
+                <div class="skill-item">
+                    <h3>HTML & CSS</h3>
+                    <p>前端基础</p>
+                </div>
+                <div class="skill-item">
+                    <h3>Node.js</h3>
+                    <p>JavaScript 运行时</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2>工作经历</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>高级全栈开发工程师</h3>
+                        <div class="time">2023 - 至今</div>
+                        <p>负责设计和开发复杂的 Web 应用程序，涉及 Python、JavaScript、React 等技术栈。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>全栈开发工程师</h3>
+                        <div class="time">2021 - 2023</div>
+                        <p>独立完成多个项目的全栈开发，包括后端 API 设计和前端界面实现。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>初级开发工程师</h3>
+                        <div class="time">2020 - 2021</div>
+                        <p>学习和掌握基础编程技能，参与团队项目开发。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>项目</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>📱 电商平台后端系统</h3>
+                    <div class="tech">Python • Django • PostgreSQL</div>
+                    <p>使用 Python + Django 构建的高性能电商平台后端，包含用户管理、商品管理、订单系统、支付集成等核心功能。支持数万日均活跃用户。</p>
+                    <a href="https://github.com/lixiayezi" target="_blank">查看项目 →</a>
+                </div>
+                <div class="project-card">
+                    <h3>📊 数据分析仪表板</h3>
+                    <div class="tech">React • Python • ECharts</div>
+                    <p>基于 React + Python 的实时数据分析平台，支持自定义报表、数据可视化、多维度分析等功能。帮助企业快速决策。</p>
+                    <a href="https://github.com/lixiayezi" target="_blank">查看项目 →</a>
+                </div>
+                <div class="project-card">
+                    <h3>📝 博客内容管理系统</h3>
+                    <div class="tech">React • Django • MySQL</div>
+                    <p>完整的全栈博客系统，前端使用 React，后端使用 Django。支持文章发布、评论、分类、标签、搜索等功能，具有优秀的用户体验。</p>
+                    <a href="https://github.com/lixiayezi" target="_blank">查看项目 →</a>
+                </div>
+                <div class="project-card">
+                    <h3>🔐 用户认证系统</h3>
+                    <div class="tech">Node.js • Express • JWT</div>
+                    <p>安全高效的用户认证和授权系统，支持注册、登录、权限管理等功能。使用 JWT token 确保 API 安全。</p>
+                    <a href="https://github.com/lixiayezi" target="_blank">查看项目 →</a>
+                </div>
+                <div class="project-card">
+                    <h3>🎨 UI 组件库</h3>
+                    <div class="tech">React • Storybook • TypeScript</div>
+                    <p>开源的 React UI 组件库，包含 50+ 常用组件。提供完整的文档和示例，便于开发者快速构建应用。</p>
+                    <a href="https://github.com/lixiayezi" target="_blank">查看项目 →</a>
+                </div>
+                <div class="project-card">
+                    <h3>⚡ 性能优化工具</h3>
+                    <div class="tech">Python • CLI • Performance</div>
+                    <p>Web 应用性能分析和优化工具，可自动检测性能瓶颈并提供优化建议。已被多家企业采用。</p>
+                    <a href="https://github.com/lixiayezi" target="_blank">查看项目 →</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <h2>联系我</h2>
+            <p>欢迎通过以下方式与我联系，一起交流和学习！无论是工作机会还是技术讨论，我都很期待和你合作。</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <a href="mailto:erica@example.com">📧 邮箱</a>
+                </div>
+                <div class="contact-item">
+                    <a href="https://github.com/lixiayezi" target="_blank">🐙 GitHub</a>
+                </div>
+                <div class="contact-item">
+                    <a href="#" target="_blank">💼 LinkedIn</a>
+                </div>
+                <div class="contact-item">
+                    <a href="#" target="_blank">🐦 Twitter</a>
+                </div>
+                <div class="contact-item">
+                    <a href="#" target="_blank">📱 微信</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
     <footer>
-        <p>&copy; 2026 John Doe</p>
+        <p>&copy; 2026 Erica - All rights reserved.</p>
+        <p>Made with ❤️ and 💻 | Welcome to my digital world</p>
     </footer>
 </body>
 </html>
