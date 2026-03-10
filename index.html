@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Professional Homepage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #4CAF50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        section {
+            padding: 2rem;
+            margin: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .skills, .projects {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .skill, .project {
+            background: #f4f4f4;
+            padding: 1rem;
+            border-radius: 5px;
+            flex: 1 1 calc(30% - 1rem);
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background: #4CAF50;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>John Doe</h1>
+        <p>Welcome to my professional homepage!</p>
+    </header>
+    <section>
+        <h2>About Me</h2>
+        <p>I am a passionate developer with expertise in various technologies. I love creating responsive and user-friendly web applications.</p>
+    </section>
+    <section class="skills">
+        <h2>Skills</h2>
+        <div class="skill">HTML</div>
+        <div class="skill">CSS</div>
+        <div class="skill">JavaScript</div>
+        <div class="skill">React</div>
+        <div class="skill">Node.js</div>
+    </section>
+    <section class="projects">
+        <h2>Projects</h2>
+        <div class="project">Project A</div>
+        <div class="project">Project B</div>
+        <div class="project">Project C</div>
+    </section>
+    <section>
+        <h2>Contact</h2>
+        <p>Email: johndoe@example.com</p>
+    </section>
+    <footer>
+        <p>&copy; 2026 John Doe</p>
+    </footer>
+</body>
+</html>
